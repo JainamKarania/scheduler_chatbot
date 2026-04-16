@@ -1,81 +1,95 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { sendMessage } from "@/lib/api";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+// import { Card } from "@/components/ui/card";
+
+import gsap from "gsap";
 
 type Message = {
   role: "user" | "ai";
   text: string;
 };
 
-export default function Chat({onTaskCreated, }: {onTaskCreated?: () => void;
-}) {
+export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const user_id = 1;
 
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const newMessage: Message = { role: "user", text: input };
-
-    setMessages((prev) => [...prev, newMessage]);
+    const userMsg: Message = { role: "user", text: input };
+    setMessages((prev) => [...prev, userMsg]);
     setInput("");
-    setLoading(true);
 
     try {
       const res = await sendMessage(input, user_id);
 
-      const aiMessage: Message = {
+      const aiMsg: Message = {
         role: "ai",
         text: res.response,
       };
 
-      if (onTaskCreated) {
-  onTaskCreated();
-}
-
-      setMessages((prev) => [...prev, aiMessage]);
-    } catch (err) {
+      setMessages((prev) => [...prev, aiMsg]);
+    } catch {
+      const errorMsg: Message = { role: "ai", text: "Something went wrong" };
       setMessages((prev) => [
         ...prev,
-        { role: "ai", text: "Error connecting to AI" },
+        errorMsg,
       ]);
     }
-
-    setLoading(false);
   };
 
-  return (
-    <div className="flex flex-col h-screen p-4">
-      <h1 className="text-2xl font-bold mb-4">AI Scheduler</h1>
+  // Auto scroll
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-      <Card className="flex-1 p-4 overflow-y-auto space-y-3">
+  // GSAP animation
+  useEffect(() => {
+    gsap.from(".message", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.3,
+    });
+  }, [messages]);
+
+  return (
+    <div className="flex flex-col h-screen w-full bg-gray-50">
+
+      {/* Header */}
+      <div className="p-4 border-b bg-white">
+        <h2 className="text-lg font-semibold">AI Assistant</h2>
+      </div>
+
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`p-2 rounded-lg max-w-[70%] ${
+            className={`message max-w-[70%] p-3 rounded-xl ${
               msg.role === "user"
-                ? "bg-blue-500 text-white self-end ml-auto"
-                : "bg-gray-200 text-black"
+                ? "bg-blue-500 text-white ml-auto"
+                : "bg-white border"
             }`}
           >
             {msg.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
+      </div>
 
-        {loading && <p className="text-gray-500">Thinking...</p>}
-      </Card>
-
-      <div className="flex gap-2 mt-4">
+      {/* Input */}
+      <div className="p-4 border-t bg-white flex gap-2">
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask AI..."
+          placeholder="Ask something..."
         />
         <Button onClick={handleSend}>Send</Button>
       </div>

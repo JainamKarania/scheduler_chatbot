@@ -1,13 +1,16 @@
-import Dashboard from './pages/Dashboard'
-
+import Sidebar from "./components/Sidebar"
+import Chat from "./components/Chat"
 function App() {
   
 
   return (
-    <>
-    <div className='bg-black text-white'>
-     <Dashboard/> 
-     </div>
+     <>
+       <div className="flex">
+      <Sidebar />
+      <div className="flex-1">
+        <Chat />
+      </div>
+    </div>
     </>
   )
 }
