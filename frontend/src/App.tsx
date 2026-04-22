@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Landing from "./pages/Landing";
-import Dashboard from "./pages/Dashboard";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Route path="/" element={<Landing />} />
 
       {/* Main App */}
-      <Route path="/app" element={<Dashboard />} />
+      <Route path="/app" element={<AppLayout />} />
     </Routes>
   );
 }

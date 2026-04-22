@@ -23,3 +23,15 @@ export const getAppointments = async (user_id: number) => {
   );
   return res.json();
 };
+
+export const updateTaskStatus = async (id: number, status: string) => {
+  await fetch(`${BASE_URL}/tasks/${id}/status?status=${status}`, {
+    method: "PATCH",
+  });
+};
+
+export const deleteTask = async (id: number) => {
+  await fetch(`${BASE_URL}/tasks/${id}`, {
+    method: "DELETE",
+  });
+};
