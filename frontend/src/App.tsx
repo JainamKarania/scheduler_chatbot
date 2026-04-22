@@ -1,18 +1,18 @@
-import Sidebar from "./components/Sidebar"
-import Chat from "./components/Chat"
-function App() {
-  
+import { Routes, Route } from "react-router-dom";
 
+import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
+
+function App() {
   return (
-     <>
-       <div className="flex">
-      <Sidebar />
-      <div className="flex-1">
-        <Chat />
-      </div>
-    </div>
-    </>
-  )
+    <Routes>
+      {/* Default Landing Page */}
+      <Route path="/" element={<Landing />} />
+
+      {/* Main App */}
+      <Route path="/app" element={<Dashboard />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
