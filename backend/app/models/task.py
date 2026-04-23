@@ -32,3 +32,5 @@ class Task(Base):
         Integer,
         ForeignKey("users.id")
     )
+    
+    type=Column(String,default="task")  

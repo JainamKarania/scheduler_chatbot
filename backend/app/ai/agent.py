@@ -4,7 +4,7 @@ from app.ai.tools import (
 
     create_task_tool,
 
-    create_appointment_tool,
+    # create_appointment_tool,
 
     get_tasks_tool
 
@@ -21,7 +21,7 @@ tools=[
 
     create_task_tool,
 
-    create_appointment_tool,
+    # create_appointment_tool,
 
     get_tasks_tool
 

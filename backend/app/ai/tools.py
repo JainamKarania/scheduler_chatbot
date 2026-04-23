@@ -4,7 +4,7 @@ from datetime import datetime
 
 from app.services.task_service import create_task,get_user_tasks
 
-from app.services.appointment_service import create_appointment
+# from app.services.appointment_service import create_appointment
 
 from app.services.scheduler_service import (
     check_conflict,
@@ -78,42 +78,42 @@ def create_task_tool(
 
 
 
-@tool
-def create_appointment_tool(
-    title:str,
-    description:str,
-    start_time:str,
-    end_time:str,
-    user_id:int
-)->str:
+# @tool
+# def create_appointment_tool(
+#     title:str,
+#     description:str,
+#     start_time:str,
+#     end_time:str,
+#     user_id:int
+# )->str:
 
-    """Create appointment for a user."""
+#     """Create appointment for a user."""
 
-    db=SessionLocal()
+#     db=SessionLocal()
 
-    try:
+#     try:
 
-        data=type("obj",(object,),{
+#         data=type("obj",(object,),{
 
-            "title":title,
-            "description":description,
-            "start_time":start_time,
-            "end_time":end_time,
-            "user_id":user_id
+#             "title":title,
+#             "description":description,
+#             "start_time":start_time,
+#             "end_time":end_time,
+#             "user_id":user_id
 
-        })
+#         })
 
-        appointment=create_appointment(db,data)
+#         appointment=create_appointment(db,data)
 
-        return f"Appointment created with id {appointment.id}"
+#         return f"Appointment created with id {appointment.id}"
 
-    except Exception:
+#     except Exception:
 
-        return "Failed to create appointment"
+#         return "Failed to create appointment"
 
-    finally:
+#     finally:
 
-        db.close()
+#         db.close()
 
 
 

@@ -17,6 +17,8 @@ class TaskCreate(BaseModel):
     deadline:Optional[datetime]=None
 
     user_id:int
+    
+    type: Optional[str] = "task"  # ← NEW FIELD
 
 
 
@@ -49,6 +51,8 @@ class TaskResponse(BaseModel):
     deadline:datetime
 
     user_id:int
+
+    type: Optional[str] = "task"  # ← NEW FIELD
 
     class Config:
 

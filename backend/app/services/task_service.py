@@ -18,6 +18,8 @@ def create_task(db,data):
 
         user_id=data.user_id,
         
+        type=data.type
+        
 
     )
 
@@ -68,6 +70,8 @@ def update_task(db,id,data):
     task.status=data.status
 
     task.deadline=data.deadline
+    
+    task.type=data.type
 
     db.commit()
 

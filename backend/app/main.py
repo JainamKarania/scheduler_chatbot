@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import Base,engine
 
 
-from app.api.routes import appointments,users,tasks,ai
+from app.api.routes import users,tasks,ai
 
 
 app=FastAPI()
@@ -33,7 +33,7 @@ app.include_router(users.router,prefix="/api",tags=["Users"])
 
 app.include_router(ai.router,prefix="/api",tags=["AI"])
 
-app.include_router(appointments.router,prefix="/api",tags=["Appointments"])
+# app.include_router(appointments.router,prefix="/api",tags=["Appointments"])
 
 app.include_router(tasks.router,prefix="/api",tags=["Tasks"])
 
