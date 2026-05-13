@@ -34,9 +34,9 @@ export default function Hero() {
             </button>
           </Link>
 
-          <button className="border px-6 py-3 rounded-xl text-lg hover:bg-gray-100 transition">
+          {/* <button className="border px-6 py-3 rounded-xl text-lg hover:bg-gray-100 transition">
             Learn More
-          </button>
+          </button> */}
         </div>
 
         {/* Optional Trust Line */}

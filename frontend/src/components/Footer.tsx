@@ -1,9 +1,9 @@
-import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+// import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-12 px-6">
-      <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-10">
         
         {/* Brand */}
         <div>
@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
 
         {/* Social */}
-        <div>
+        {/* <div>
           <h3 className="font-semibold mb-3">Connect</h3>
           <div className="flex gap-4 text-xl text-gray-400">
             <a href="#" className="hover:text-white transition">
@@ -49,7 +49,7 @@ export default function Footer() {
               <FiTwitter />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom */}

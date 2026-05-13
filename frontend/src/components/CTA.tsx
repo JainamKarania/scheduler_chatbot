@@ -24,15 +24,15 @@ export default function CTA() {
             </button>
           </Link>
 
-          <button className="border border-white px-6 py-3 rounded-xl hover:bg-white/10 transition">
+          {/* <button className="border border-white px-6 py-3 rounded-xl hover:bg-white/10 transition">
             Learn More
-          </button>
+          </button> */}
         </div>
 
         {/* Trust line */}
-        <p className="mt-6 text-sm text-white/80">
-          Free to use • No credit card required
-        </p>
+        {/* <p className="mt-6 text-sm text-white/80">
+          Free to use
+        </p> */}
       </div>
     </section>
   );
